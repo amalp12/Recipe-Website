@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <title>Delicious Recipes</title>
     <link href = "https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap" rel="stylesheet" >
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/styles.css') }}">
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/searchpagestyles.css') }}">
     <script src="https://kit.fontawesome.com/ad5cc6e992.js" crossorigin="anonymous"></script>
-    
+    <script type="text/javascript">
+        let data ='{{ dbdata|tojson }}';
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='javascripts/search.js') }}"></script>
 
     </head>
     <body background="{{ url_for('static', filename='images/bg.jpg') }}">
@@ -20,19 +22,23 @@
             <h2> <a href="{{url_for('trending')}}"> Trending Recipes </a> </h2>
             <h2> <a href="{{url_for('classics')}}"> Classic Recipes </a> </h2>
             <h2> <a href="{{url_for('lunch')}}"> Lunch Time </a> </h2>
-            <h2> <a href="{{url_for('desserts')}}"> Desserts </a> </h2>
+            <h2> <a href="{{url_for('desserts')}}"> Dessert </a> </h2>
         </div>
+        <div class="search-page-body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Cost</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody id="search-table">
 
-        <div class="search-bar-body">
-            <div class="search-box">
-                <form action="/" method="POST" id="search-form">
-                    <button type = "submit "class="search-button" form="search-form" name = 'button'>
-                        <i class="fas fa-search"> </i>
-                    
-                    </button>
-                    <input type="text" class="search-input" placeholder="Type To Search Recipes..." name = 'search-textbox'>
-                </form>
-            </div>
+                </tbody>
+            </table>
+            
         </div>
     </body>
 </html>
+
