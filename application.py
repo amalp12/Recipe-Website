@@ -33,9 +33,8 @@ def search():
     if request.method == 'POST':
         
         text = request.form['search-textbox']
-        data = get_recipes()
         
-        return redirect(flask.url_for('search_page'))
+        return redirect(flask.url_for('search_page',  text = text))
         
         
 
@@ -54,9 +53,10 @@ def index():
 
     return render_template("index.html")
 
-@app.route('/search', methods = ["POST", "GET"])
-def search_page():
+@app.route('/search/<text>', methods = ["POST", "GET"])
+def search_page(text):
     data = get_recipes()
+    data["recipes"] = [x for x in data["recipes"] if not x['name'].lower().count(text.lower()) ==0]
     return render_template("search-page.html" , dbdata = data)
 """
 
