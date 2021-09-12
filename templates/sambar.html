@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Delicious Recipes</title>
+    <link href = "https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap" rel="stylesheet" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/recipestyles.css') }}">
+    
+    <script src="https://kit.fontawesome.com/ad5cc6e992.js" crossorigin="anonymous"></script>
+    
+
+    </head>
+    <body background="{{ url_for('static', filename='images/bg.jpg') }}">
+        <div class = "main-title">
+            <h1 align = "center" > Recipe Paradise</h1>
+        </div>
+        <div class = "sub-tabs">
+            <h2> <a href="{{url_for('index')}}"> Home </a></h2>
+            <h2> <a href="{{url_for('trending')}}"> Trending Recipes </a> </h2>
+            <h2> <a href="{{url_for('classics')}}"> Classic Recipes </a> </h2>
+            <h2> <a href="{{url_for('lunch')}}"> Lunch Time </a> </h2>
+            <h2> <a href="{{url_for('desserts')}}"> Dessert </a> </h2>
+        </div>
+        <div class="recipe-body">
+            <h2 class = "name" >Sambar</h2>
+            
+            
+            <img src="{{ url_for('static', filename='images/sambar.jpg') }}" alt="Image of Sambar" border = 3  class = "image">
+            
+            <h4 class="step"> Ingredients </h4>
+
+            <ul class="list-elements">
+                <li>Yellow Pigeon Peas /Toor daal  : 1 cup </li>
+                <li>Drumsticks : 1 no (cut lengthwise)</li>
+                <li>Lady`s finger  : 5-6 nos (cut into 2″ pieces)</li>
+                <li>Potatoes : 1 (large, cubed)</li>
+                <li>Tomato : 1 (medium, chopped)</li>
+                <li>Small Red Onions /Shallots : Handful (cut into halves) or Onion /Savola : 1(medium, sliced thickly)</li>
+                <li>Green Chilly  : 2-3 (slit,lengthwise)</li>
+                <li>Tamarind  : Gooseberry sized (soaked in half a cup of hot water for 10 mins)</li>
+                <li>Grated Coconut : 1 cup</li>
+                <li>Coriander Powder : 3 tsp</li>
+                <li>Red chilli Powder  : 11/2 tsp</li>
+                <li>Dried red chillies : 3-4 (or according to your tolerance level)</li>
+                <li>Fenugreek seeds powder  :1 tsp</li>
+                <li>Asafoetida : 1 small piece /1/2 tsp</li>
+                <li>Coriander Leaves  : 1 sprig (chopped)</li>
+                <li>Salt to taste</li>
+            </ul>
+
+            <h4 class="step"> Step 1</h4>
+            <p class="paragraph" >
+                Pressure cook toor daal with water,tumeric powder and salt for 4-5whistle.
+            </p>   
+            <h4 class="step">Step 2</h4>
+            <p class="paragraph"> 
+                After the pressure settles open the cooker and add the vegetables which are slow to cook like potatoes, drumsticks.
+            </p>    
+            <h4 class="step">Step 3</h4>
+            <p class="paragraph"> 
+                In a frying pan add small quantity of coconut oil and add the ladies finger, saute it well, add handful of small onion and saute till it become transparent now add tomato and close pan and cook for couple of mins and keep it aside.
+            </p>    
+            <h4 class="step">Step 4</h4>
+            <p class="paragraph"> 
+                Add the tamarind juice and adjust the salt (if necessary).
+            </p>
+
+            <h4 class="step">Step 5</h4>
+            <p class="paragraph"> 
+                When the vegetables are cooked and mixed well with dal. Add cooked and fried shallots, ladies finger and tomatoes.
+            </p>
+            <h4 class="step">Step 6</h4>
+            <p class="paragraph"> 
+                Meanwhile roast the grated coconut in some oil with few curry leaves and fenugreek powder, coriander powder, red chilli powder and asafoetida, until the raw smell of spices disappears.(Note : Take care not to burn the spices.)
+            </p>
+            <h4 class="step">Step 7</h4>
+            <p class="paragraph"> 
+                Grind this to a fine paste adding enough water, don’t make it too watery.
+            </p>
+            <h4 class="step">Step 8</h4>
+            <p class="paragraph"> 
+                When vegetables starts boiling; add the coconut mixture, cook it in medium flame till the gravy thickens, not be too thick either.
+            </p>
+            <h4 class="step">Step 9</h4>
+            <p class="paragraph"> 
+                Heat coconut oil in a small frying pan and splutter mustard seeds, fenugreek seeds, asafoetida and curry leaves and pour the tempering to sambar and mix properly and add chopped coriander leaves. Keep covered till served. Let the flavor set.
+            </p>
+            <h4 class="step">Step 10</h4>
+            <p class="paragraph"> 
+                Mix the curry well before serving…Serve with rice or Idli, Dosa, and Enjoy!
+            </p>
+
+
+
+        </div>
+    </body>
+</html>
