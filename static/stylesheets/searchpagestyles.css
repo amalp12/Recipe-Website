@@ -46,20 +46,33 @@ body{
     justify-content: center;
     align-items: left;
     flex-direction: column;
+    
 }
 
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    
 }
 
 td, th{
     border: 1px solid whitesmoke;
     padding: 8px;
+    
 }
 th {
     font-weight: bold;
     text-transform: uppercase;
+    
 
+}
+
+tr :nth-child(even)
+{
+    background-color: #ddddddad;
+}
+tr:hover{
+    background-color: black;
+    color: white;
 }

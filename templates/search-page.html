@@ -28,9 +28,10 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Cost</th>
-                        <th>Time</th>
+                        <th onclick="SortColumn('name')">Name</th>
+                        <th onclick="SortColumn('rating')">Rating</th>
+                        <th onclick="SortColumnCost('cost')">Cost</th>
+                        <th onclick="SortColumn('time')">Time</th>
                     </tr>
                 </thead>
                 <tbody id="search-table">

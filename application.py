@@ -94,6 +94,8 @@ def trending():
 def payasam():
     return render_template("payasam.html")
 
-
+@app.route('/sambar')
+def sambar():
+    return render_template("sambar.html")
 if __name__ == 'main':
     app.run(debug=True)
