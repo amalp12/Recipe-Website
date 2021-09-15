@@ -7,6 +7,63 @@ let sort_decending = false; // if truw will sort in ascending order
 let  cost_dict = {"High" : 2, "Medium":1, "Low":0};
 data = JSON.parse(data);
 data = data.recipes;
+
+
+
+
+
+
+let searchQuery = text;
+const APP_ID = '10a11e73';
+const APP_key = '0bb2267f6d318266de72f6b604eb58bc';
+// console.log(container)
+
+window.onload = () => {
+    searchQuery = text;
+    fetchAPI();
+};
+
+
+
+async function fetchAPI() {
+  const baseURL = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_key}&from=0&to=20`;
+  const response = await fetch(baseURL);
+  const data = await response.json();
+  generateHTML(data.hits);
+  console.log(data);
+}
+
+function generateHTML(results) {
+  const searchBodyDiv = document.getElementById('search-results-body');
+  let generatedHTML = "";
+  results.map((result) => {
+    generatedHTML += `
+      <div class="item">
+        <img src="${result.recipe.image}" alt="img">
+        <div class="flex-container">
+          <h1 class="title">${result.recipe.label}</h1>
+          <a class="view-btn" target="_blank" href="${
+            result.recipe.url
+          }">View Recipe</a>
+        </div>
+        <p class="item-data">Calories: ${result.recipe.calories.toFixed(2)}</p>
+        <p class="item-data">Diet label: ${
+          result.recipe.dietLabels.length > 0
+            ? result.recipe.dietLabels
+            : "No Data Found"
+        }</p>
+        <p class="item-data">Health labels: ${result.recipe.healthLabels}</p>
+      </div>
+    `;
+  });
+  searchBodyDiv.innerHTML = generatedHTML;
+}
+
+
+
+
+/*
+
 window.onload = () => {
     loadTableData(data);
 };
@@ -68,3 +125,4 @@ function sortNumber(sort, columnName)
         return sort? p1[columnName]- p2[columnName] : p2[columnName]-p1[columnName]
     });
 }
+*/

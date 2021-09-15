@@ -1,11 +1,13 @@
 
-import re
+
 from typing import Text
 from flask import Flask, render_template, request, redirect
 import flask
 #from requests import request
 from flask_sqlalchemy import SQLAlchemy
 import requests
+from py_edamam import Edamam
+
 # Bash
 # export FLASK_APP=application.py
 # flask run
@@ -15,6 +17,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
 SERVER_URL = 'http://127.0.0.1:5000/'
+APP_ID = '10a11e73';
+APP_KEY = '0bb2267f6d318266de72f6b604eb58bc' ;
+
+
+edamam = Edamam(recipes_appid=APP_ID, recipes_appkey=APP_KEY)
+
+
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -35,6 +44,7 @@ def search():
         text = request.form['search-textbox']
         
         return redirect(flask.url_for('search_page',  text = text))
+    
         
         
 
@@ -57,7 +67,7 @@ def index():
 def search_page(text):
     data = get_recipes()
     data["recipes"] = [x for x in data["recipes"] if not x['name'].lower().count(text.lower()) ==0]
-    return render_template("search-page.html" , dbdata = data)
+    return render_template("search-page.html" , dbdata = data, text = text)
 """
 
 @app.route('/<param>')
