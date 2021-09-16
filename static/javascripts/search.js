@@ -20,13 +20,14 @@ const APP_key = '0bb2267f6d318266de72f6b604eb58bc';
 
 window.onload = () => {
     searchQuery = text;
-    fetchAPI();
+    const baseurl = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_key}&from=0&to=20`;
+    fetchAPI(baseurl);
 };
 
 
 
-async function fetchAPI() {
-  const baseURL = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_key}&from=0&to=20`;
+async function fetchAPI(baseURL) {
+  
   const response = await fetch(baseURL);
   const data = await response.json();
   generateHTML(data.hits);
@@ -46,13 +47,15 @@ function generateHTML(results) {
             result.recipe.url
           }">View Recipe</a>
         </div>
-        <p class="item-data">Calories: ${result.recipe.calories.toFixed(2)}</p>
-        <p class="item-data">Diet label: ${
+        <p class="item-data">Calories per serving: ${(result.recipe.calories/result.recipe.yield).toFixed(2)}</p>
+        <p class="item-data">Ingredients: ${
+          (result.recipe.ingredientLines+'').length>150? (result.recipe.ingredientLines+'').substr(0,150)+'...' : (result.recipe.ingredientLines +'')
+        }</p>
+        <p class="item-data">Diet Type: ${
           result.recipe.dietLabels.length > 0
-            ? result.recipe.dietLabels
+            ? result.recipe.dietLabels 
             : "No Data Found"
         }</p>
-        <p class="item-data">Health labels: ${result.recipe.healthLabels}</p>
       </div>
     `;
   });
@@ -60,7 +63,16 @@ function generateHTML(results) {
 }
 
 
-
+function sortByCal(e){
+  e = e || window.event;  
+  let nameOfFunction = this[e.target.name];
+  let arg1 = e.target.getAttribute('data-arg1');
+  let arg2 = e.target.getAttribute('data-arg2');
+  const baseurl = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_key}&from=0&to=20&calories=${arg1}-${arg2}`;
+  //console.log(baseurl);
+  fetchAPI(baseurl);
+  
+}
 
 /*
 
