@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/searchpagestyles.css') }}">
     <script src="https://kit.fontawesome.com/ad5cc6e992.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-        let data ='{{ dbdata|tojson }}';
         let text ='{{ text }}';
     </script>
     <script type="text/javascript" src="{{ url_for('static', filename='javascripts/search.js') }}"></script>
@@ -16,7 +15,7 @@
     </head>
     <body background="{{ url_for('static', filename='images/bg.jpg') }}">
         <div class = "main-title">
-            <h1 align = "center" > Recipe Paradise</h1>
+            <h1 align = "center"  > Recipe Paradise</h1>
         </div>
         <div class = "sub-tabs">
             <h2> <a href="{{url_for('index')}}"> Home </a></h2>
@@ -56,10 +55,10 @@
                     </tr>
                 </thead>
                 <tbody id="search-table">
-                    <tr><td onclick="sortByCal(event)"  data-arg1 =0 data-arg2 =200>0-200</td><td>0-60 Minutes</td><td>Balanced</td></tr><!--tr><td  style="cursor:pointer" > <a  style="text-decoration:none" href= '${SERVER_URL}${row_data.page_link}'>${row_data.name}</a></td><td>${row_data.rating}</td><td>${row_data.cost}</td><td>${row_data.time}</td></tr-->
-                    <tr><td onclick="sortByCal(event)"  data-arg1 =201 data-arg2 =1000>201-1000</td><td>61-200 Minutes</td><td>High Protein</td></tr>
-                    <tr><td onclick="sortByCal(event)"  data-arg1 =1001 data-arg2 =2000>1001-2000</td><td>201-500 Minutes</td><td>Low Fat </td></tr>
-                    <tr><td onclick="sortByCal(event)"  data-arg1 =2001 data-arg2 =12000>2000+</td><td>500+ Minutes</td><td>Low Carb</td></tr>
+                    <tr><td onclick="sortByCal(event)"  data-arg1 =0 data-arg2 =200>0-200</td><td onclick="sortByTime(event)"  data-arg1 =0 data-arg2 =60>0-60 Minutes</td onclick="sortByDiet(event)"  data-arg1 ="balanced"><td>Balanced</td></tr><!--tr><td  style="cursor:pointer" > <a  style="text-decoration:none" href= '${SERVER_URL}${row_data.page_link}'>${row_data.name}</a></td><td>${row_data.rating}</td><td>${row_data.cost}</td><td>${row_data.time}</td></tr-->
+                    <tr><td onclick="sortByCal(event)"  data-arg1 =201 data-arg2 =1000>201-1000</td><td onclick="sortByTime(event)"  data-arg1 =61 data-arg2 =200>61-200 Minutes</td><td onclick="sortByDiet(event)"  data-arg1 ="high-protein">High Protein</td></tr>
+                    <tr><td onclick="sortByCal(event)"  data-arg1 =1001 data-arg2 =2000>1001-2000</td><td onclick="sortByTime(event)"  data-arg1 =201 data-arg2 =500>201-500 Minutes</td onclick="sortByDiet(event)"  data-arg1 ="low-fat"><td>Low Fat </td></tr>
+                    <tr><td onclick="sortByCal(event)"  data-arg1 =2001 data-arg2 =12000>2000+</td><td onclick="sortByTime(event)"  data-arg1 =501 data-arg2 =10000>500+ Minutes</td><td onclick="sortByDiet(event)"  data-arg1 ="low-carb">Low Carb</td></tr>
                 </tbody>
             </table>
             

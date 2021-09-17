@@ -12,19 +12,19 @@ from py_edamam import Edamam
 # export FLASK_APP=application.py
 # flask run
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
+#app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+#db = SQLAlchemy(app)
 
-SERVER_URL = 'http://127.0.0.1:5000/'
-APP_ID = '10a11e73';
-APP_KEY = '0bb2267f6d318266de72f6b604eb58bc' ;
-
-
-edamam = Edamam(recipes_appid=APP_ID, recipes_appkey=APP_KEY)
+#SERVER_URL = 'http://127.0.0.1:5000/'
+#APP_ID = '10a11e73';
+#APP_KEY = '0bb2267f6d318266de72f6b604eb58bc' ;
 
 
+#edamam = Edamam(recipes_appid=APP_ID, recipes_appkey=APP_KEY)
 
+
+"""
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique = True, nullable = False)
@@ -36,18 +36,21 @@ class Recipe(db.Model):
     def __repr__(self):
         return  f"{self.name} - {self.page_link}"
 
-
+"""
 @app.route("/", methods = ["POST"])
 def search():
     if request.method == 'POST':
         
         text = request.form['search-textbox']
-        
-        return redirect(flask.url_for('search_page',  text = text))
+        if len(text)>0:
+            return redirect(flask.url_for('search_page',  text = text))
+        else:
+            return redirect(flask.url_for('search'))
+
     
         
         
-
+"""
 # get requsts
 @app.route('/recipes')
 def get_recipes():
@@ -57,7 +60,7 @@ def get_recipes():
         recipe_data = {"name": recipe.name, "page_link": recipe.page_link , "rating": recipe.rating , "cost": recipe.cost, "time": recipe.time}
         output.append(recipe_data)
     return {"recipes":output}
-
+"""
 @app.route('/' , methods = ['GET','POST' ])
 def index():
 
@@ -65,9 +68,9 @@ def index():
 
 @app.route('/search/<text>', methods = ["POST", "GET"])
 def search_page(text):
-    data = get_recipes()
-    data["recipes"] = [x for x in data["recipes"] if not x['name'].lower().count(text.lower()) ==0]
-    return render_template("search-page.html" , dbdata = data, text = text)
+    #data = get_recipes()
+    #data["recipes"] = [x for x in data["recipes"] if not x['name'].lower().count(text.lower()) ==0]
+    return render_template("search-page.html" , text = text)
 """
 
 @app.route('/<param>')

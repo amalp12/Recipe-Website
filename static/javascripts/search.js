@@ -5,10 +5,6 @@ let sort_decending = false; // if truw will sort in ascending order
 //let data = "{{ data }}";
 //let data = '{{dbdata}}'//[{name: "Wings", cost :30 , time : 70} ] ;
 let  cost_dict = {"High" : 2, "Medium":1, "Low":0};
-data = JSON.parse(data);
-data = data.recipes;
-
-
 
 
 
@@ -48,13 +44,14 @@ function generateHTML(results) {
           }">View Recipe</a>
         </div>
         <p class="item-data">Calories per serving: ${(result.recipe.calories/result.recipe.yield).toFixed(2)}</p>
-        <p class="item-data">Ingredients: ${
-          (result.recipe.ingredientLines+'').length>150? (result.recipe.ingredientLines+'').substr(0,150)+'...' : (result.recipe.ingredientLines +'')
-        }</p>
+        <p class="item-data">Time: ${(result.recipe.totalTime>0?result.recipe.totalTime + ' minutes':"No Data Found")} </p>
         <p class="item-data">Diet Type: ${
           result.recipe.dietLabels.length > 0
             ? result.recipe.dietLabels 
             : "No Data Found"
+        }</p>
+        <p class="item-data">Ingredients: ${
+          (result.recipe.ingredientLines+'').length>150? (result.recipe.ingredientLines+'').substr(0,150)+'...' : (result.recipe.ingredientLines +'')
         }</p>
       </div>
     `;
@@ -65,10 +62,26 @@ function generateHTML(results) {
 
 function sortByCal(e){
   e = e || window.event;  
-  let nameOfFunction = this[e.target.name];
   let arg1 = e.target.getAttribute('data-arg1');
   let arg2 = e.target.getAttribute('data-arg2');
-  const baseurl = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_key}&from=0&to=20&calories=${arg1}-${arg2}`;
+  let baseurl = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_key}&from=0&to=20&calories=${arg1}-${arg2}`;
+  //console.log(baseurl);
+  fetchAPI(baseurl);
+  
+}
+function sortByTime(e){
+  e = e || window.event;  
+  let arg1 = e.target.getAttribute('data-arg1');
+  let arg2 = e.target.getAttribute('data-arg2');
+  let baseurl = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_key}&from=0&to=20&time=${arg1}-${arg2}`;
+  //console.log(baseurl);
+  fetchAPI(baseurl);
+  
+}
+function sortByDiet(e){
+  e = e || window.event;  
+  let arg1 = e.target.getAttribute('data-arg1');
+  let baseurl = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_key}&from=0&to=20&diet=${arg1}`;
   //console.log(baseurl);
   fetchAPI(baseurl);
   
