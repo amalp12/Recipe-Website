@@ -81,11 +81,11 @@ def go_to(param):
 def get_recipe(id):
     recipe = Recipe.query.get_or_404(id)
     return {"name": recipe.name, "description": recipe.page_link , "rating": recipe.rating , "cost": recipe.cost, "time": recipe.time}
-"""      
 @app.route('/recipes', methods = ['POST'])
 def add_recipe():
     recipe = Recipe(name = request.json['name'], description = request.json['description'], rating= request.json['rating'], cost = request.json['cost'] , time = request.json['time'])
 
+"""      
 @app.route('/classics')
 def classics():
     return render_template("classics.html")
@@ -103,12 +103,5 @@ def lunch():
 def trending():
     return render_template("trending.html")
 
-@app.route('/payasam')
-def payasam():
-    return render_template("payasam.html")
-
-@app.route('/sambar')
-def sambar():
-    return render_template("sambar.html")
 if __name__ == 'main':
     app.run(debug=True)

@@ -8,11 +8,11 @@
     <link href = "https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap" rel="stylesheet" >
     <link rel="stylesheet" href="/static/stylesheets/searchpagestyles.css">
     <script src="https://kit.fontawesome.com/ad5cc6e992.js" crossorigin="anonymous"></script>
-    <script type="text/javascript">
+    <!--script type="text/javascript">
         let data ='{"recipes": []}';
         let text ='classic';
     </script>
-    <script type="text/javascript" src="/static/javascripts/search.js"></script>
+    <script type="text/javascript" src="/static/javascripts/search.js"></script-->
 
     </head>
     <body background="/static/images/bg.jpg">
@@ -20,11 +20,11 @@
             <h1 align = "center" > Recipe Paradise</h1>
         </div>
         <div class = "sub-tabs">
-            <h2> <a href="/"> Home </a></h2>
-            <h2> <a href="/trending"> Trending Recipes </a> </h2>
-            <h2> <a href="/classics"> Classic Recipes </a> </h2>
-            <h2> <a href="/lunch"> Lunch Time </a> </h2>
-            <h2> <a href="/desserts"> Dessert </a> </h2>
+          <h2> <a href="{{url_for('index')}}"> Home </a></h2>
+          <h2> <a href="{{url_for('trending')}}"> Trending Recipes </a> </h2>
+          <h2> <a href="{{url_for('classics')}}"> Classic Recipes </a> </h2>
+          <h2> <a href="{{url_for('lunch')}}"> Lunch Time </a> </h2>
+          <h2> <a href="{{url_for('desserts')}}"> Desserts </a> </h2>
         </div>
         
         
