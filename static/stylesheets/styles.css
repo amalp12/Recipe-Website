@@ -31,10 +31,9 @@ body{
     background-size: 80%;
 }
 .search-bar-body{
-    margin: 0px;
-    padding: 0px;
+
     width: 100vw;
-    height: 50vw;
+    height: 100vh;
     display: flex;
     background-color: rgb(233, 233, 233, 0.3);
     justify-content: center;
@@ -50,7 +49,7 @@ body{
 }
 
 .search-input{
-    
+    align-self: center;
     height: 50px;
     width: 50px;
     border-style: none;

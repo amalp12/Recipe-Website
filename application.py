@@ -45,7 +45,7 @@ def search():
         if len(text)>0:
             return redirect(flask.url_for('search_page',  text = text))
         else:
-            return redirect(flask.url_for('search'))
+            return ('', 204)
 
     
         
